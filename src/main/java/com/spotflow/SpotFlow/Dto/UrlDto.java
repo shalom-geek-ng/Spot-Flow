@@ -9,5 +9,6 @@ public class UrlDto {
 	private String originalUrl;
 	private LocalDateTime createdAt;
 	private LocalDateTime expiresAt;
+	private String shortCode;
 	private long clickCount;
 }

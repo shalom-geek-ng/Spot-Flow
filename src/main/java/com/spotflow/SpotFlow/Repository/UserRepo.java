@@ -8,6 +8,6 @@ import com.spotflow.SpotFlow.Entities.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
 
-	Optional <User> findbyEmail(String email);
+	Optional <User> findByEmail(String email);
 
 }
