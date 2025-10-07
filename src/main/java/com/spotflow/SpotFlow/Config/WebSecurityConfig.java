@@ -22,25 +22,26 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class WebSecurityConfig implements WebMvcConfigurer {
-	private final JwtAuthenticationFilter jwtAuthFilter;
-	
-	@Bean
+    private final JwtAuthenticationFilter jwtAuthFilter;
+    
+    @Bean
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-        .cors(withDefaults())
+            .cors(withDefaults())
             .csrf().disable()
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests((requests) ->
                 requests
-                .requestMatchers("/api/auth/signup", "/api/auth/login","/api/v1/create-url","/api/hello").permitAll()
+                    .requestMatchers(
+                        "/api/hello",
+                        "/api/v1/create-url"
+                    ).permitAll()
                     .anyRequest().authenticated()
             )
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            
-;
+        
         return http.build();
     }
-
 }

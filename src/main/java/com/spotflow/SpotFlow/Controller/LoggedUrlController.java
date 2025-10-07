@@ -15,17 +15,17 @@ import com.spotflow.SpotFlow.Services.UrlCreationService;
 @RestController
 @RequestMapping("/api")
 public class LoggedUrlController {
-	@Autowired
-	private UrlCreationService urlService;
-	
-	@GetMapping("/hello")
-	public String hello() {
-		return "hello";
-	}
-	
-	@PostMapping("/v1/create-url")
-	public ResponseEntity<?> createUrl(@RequestBody UrlDto urlDto){
-		return ResponseEntity.ok(urlService.createUrl(urlDto));
-	}
-	
+    
+    @Autowired
+    private UrlCreationService urlService;
+    
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("hello");
+    }
+    
+    @PostMapping("/v1/create-url")
+    public ResponseEntity<?> createUrl(@RequestBody UrlDto urlDto){
+        return ResponseEntity.ok(urlService.createUrl(urlDto));
+    }
 }
