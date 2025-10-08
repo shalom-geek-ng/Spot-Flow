@@ -10,6 +10,12 @@ public class UserDto {
 		super();
 		this.email = email;
 	}
+	public UserDto(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
+	
 	
 }

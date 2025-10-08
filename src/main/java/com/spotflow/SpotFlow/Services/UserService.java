@@ -26,6 +26,6 @@ public class UserService {
 		user.setPassword(passwordEncoder.encode(dto.getPassword()));
 		User savedUser = userRepo.save(user);
 		dto.setEmail(savedUser.getEmail());
-			return new UserDto(dto.getEmail());
+			return new UserDto(dto.getEmail(),savedUser.getPassword());
 		}
 }
