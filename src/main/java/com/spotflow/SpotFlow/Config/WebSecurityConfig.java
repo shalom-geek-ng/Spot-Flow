@@ -72,7 +72,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
         http.csrf().disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/v1/create-url", "/api/v1/get-original-url-by-shortened/**","/api/v1/create-user","/api/auth/**","/api/v1/get-url-analytics","/api/v1/create-personal-short-url").permitAll()
+            .requestMatchers("/api/v1/create-url", "/api/v1/get-original-url-by-shortened/**","/api/v1/create-user","/api/auth/**","/api/v1/get-url-analytics","/api/v1/create-personal-short-url","/swagger-ui/**",
+                    "/v3/api-docs/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
