@@ -1,11 +1,15 @@
 package com.spotflow.SpotFlow;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(
-	    exclude = { SystemMetricsAutoConfiguration.class }
+	    exclude = {
+	        MetricsAutoConfiguration.class,
+	        SystemMetricsAutoConfiguration.class
+	    }
 	)
 public class SpotFlowApplication {
 
