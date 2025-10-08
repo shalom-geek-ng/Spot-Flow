@@ -70,20 +70,27 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
-        http.csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/api/v1/create-url", "/api/v1/get-original-url-by-shortened/**","/api/v1/create-user","/api/auth/**","/api/v1/get-url-analytics","/api/v1/create-personal-short-url",
-            		
-            		"/swagger-ui/**",
+        http
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                    "/api/v1/create-url",
+                    "/api/v1/get-original-url-by-shortened/**",
+                    "/api/v1/create-user",
+                    "/api/auth/**",
+                    "/api/v1/get-url-analytics",
+                    "/api/v1/create-personal-short-url",
+
+                    // ✅ Swagger & OpenAPI
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
                     "/v3/api-docs/**",
                     "/swagger-resources/**",
-                    "/swagger-ui.html",
                     "/webjars/**"
-                    ).permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
+                ).permitAll()
+                .anyRequest().authenticated()
+            )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
