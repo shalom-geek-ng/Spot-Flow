@@ -3,13 +3,8 @@ package com.spotflow.SpotFlow.Dto;
 import lombok.Data;
 
 @Data
-public class UserDto {
+public class AuthRequest {
 	private String email;
 	private String password;
-	public UserDto(String email) {
-		super();
-		this.email = email;
-	}
-
-	
 }
+
