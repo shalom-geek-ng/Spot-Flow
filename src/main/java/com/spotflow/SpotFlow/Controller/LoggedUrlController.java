@@ -13,7 +13,7 @@ import com.spotflow.SpotFlow.Services.UrlCreationService;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/apis")
 public class LoggedUrlController {
     
     @Autowired
